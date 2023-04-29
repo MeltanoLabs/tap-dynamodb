@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
+from singer_sdk.connectors.aws_boto3 import AWS_AUTH_CONFIG
 from singer_sdk.plugin_base import PluginBase
 
 from tap_dynamodb import streams
-from tap_dynamodb.connectors.aws_boto_connector import AWS_AUTH_CONFIG
 from tap_dynamodb.dynamodb_connector import DynamoDbConnector
 from tap_dynamodb.exception import EmptyTableException
 

@@ -1,12 +1,12 @@
 import genson
 import orjson
 from botocore.exceptions import ClientError
+from singer_sdk.connectors import AWSBoto3Connector
 
-from tap_dynamodb.connectors.aws_boto_connector import AWSBotoConnector
 from tap_dynamodb.exception import EmptyTableException
 
 
-class DynamoDbConnector(AWSBotoConnector):
+class DynamoDbConnector(AWSBoto3Connector):
     """DynamoDB connector class."""
 
     def __init__(

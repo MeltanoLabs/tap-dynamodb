@@ -32,7 +32,10 @@ class TapDynamoDB(Tap):
         th.Property(
             "table_scan_kwargs",
             th.ObjectType(),
-            description="A mapping of table name to the scan kwargs that should be used to override the default when querying that table.",
+            description=(
+                "A mapping of table name to the scan kwargs that should be used to "
+                "override the default when querying that table."
+            ),
         ),
     ).to_dict()
 

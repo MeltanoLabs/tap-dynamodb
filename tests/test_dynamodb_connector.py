@@ -75,6 +75,7 @@ def test_get_items():
     assert records[0].get("title") == "foo"
     assert records[0].get("info") == {"plot": "bar"}
 
+
 @mock_dynamodb
 def test_get_items_w_kwargs():
     # PREP
@@ -84,11 +85,17 @@ def test_get_items_w_kwargs():
     # END PREP
 
     db_obj = DynamoDbConnector(SAMPLE_CONFIG)
-    records = list(db_obj.get_items_iter("table", {"Select": "SPECIFIC_ATTRIBUTES", "ProjectionExpression": "title, info"}))[0]
+    records = list(
+        db_obj.get_items_iter(
+            "table",
+            {"Select": "SPECIFIC_ATTRIBUTES", "ProjectionExpression": "title, info"},
+        )
+    )[0]
     assert len(records) == 1
     # Type coercion
     assert records[0].get("title") == "foo"
     assert records[0].get("info") == {"plot": "bar"}
+
 
 @mock_dynamodb
 def test_get_items_paginate():
@@ -137,6 +144,7 @@ def test_get_table_json_schema():
         },
     }
 
+
 @mock_dynamodb
 def test_get_table_json_schema_w_kwargs():
     # PREP
@@ -149,7 +157,11 @@ def test_get_table_json_schema_w_kwargs():
     # END PREP
 
     db_obj = DynamoDbConnector(SAMPLE_CONFIG)
-    schema = db_obj.get_table_json_schema("table", 5, {"Select": "SPECIFIC_ATTRIBUTES", "ProjectionExpression": "title, info"})
+    schema = db_obj.get_table_json_schema(
+        "table",
+        5,
+        {"Select": "SPECIFIC_ATTRIBUTES", "ProjectionExpression": "title, info"},
+    )
     assert schema == {
         "type": "object",
         "properties": {

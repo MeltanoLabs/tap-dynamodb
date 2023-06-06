@@ -60,9 +60,7 @@ class DynamoDbConnector(AWSBotoConnector):
         else:
             return tables
 
-    def get_items_iter(
-        self, table_name: str, scan_kwargs_override: dict
-    ):
+    def get_items_iter(self, table_name: str, scan_kwargs_override: dict):
         scan_kwargs = scan_kwargs_override.copy()
         if "ConsistentRead" not in scan_kwargs:
             scan_kwargs["ConsistentRead"] = True
@@ -89,7 +87,9 @@ class DynamoDbConnector(AWSBotoConnector):
             )
             raise
 
-    def _get_sample_records(self, table_name: str, sample_size: int, scan_kwargs_override: dict) -> list:
+    def _get_sample_records(
+        self, table_name: str, sample_size: int, scan_kwargs_override: dict
+    ) -> list:
         scan_kwargs = scan_kwargs_override.copy()
         sample_records = []
         if "ConsistentRead" not in scan_kwargs:
@@ -97,9 +97,7 @@ class DynamoDbConnector(AWSBotoConnector):
         if "Limit" not in scan_kwargs:
             scan_kwargs["Limit"] = sample_size
 
-        for batch in self.get_items_iter(
-            table_name, scan_kwargs
-        ):
+        for batch in self.get_items_iter(table_name, scan_kwargs):
             sample_records.extend(batch)
             if len(sample_records) >= sample_size:
                 break

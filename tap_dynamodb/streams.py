@@ -37,7 +37,9 @@ class TableStream(Stream):
         self._table_name: str = name
         self._schema: dict = {}
         self._infer_schema_sample_size = infer_schema_sample_size
-        self._table_scan_kwargs: dict = tap.config.get("table_scan_kwargs", {}).get(name, {})
+        self._table_scan_kwargs: dict = tap.config.get("table_scan_kwargs", {}).get(
+            name, {}
+        )
         if tap.input_catalog:
             catalog_entry = tap.input_catalog.get(name)
             if catalog_entry:

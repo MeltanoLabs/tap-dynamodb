@@ -8,7 +8,7 @@ keywords = [
     "ELT",
     "DynamoDB",
 ]
-license = "Apache 2.0"
+license = "Apache-2.0"
 packages = [
     { include = "tap_dynamodb" },
 ]
